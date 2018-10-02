@@ -1,0 +1,46 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <script>
+    function clear_area() {
+      document.getElementById("txtarea").value = "";
+    }
+    function run() {
+      var2 = document.getElementById("txtarea").value;
+      document.getElementById("iframe_run").srcdoc = var2;
+    }
+    function frameclear() {
+      document.getElementById("iframe_run").srcdoc = "";
+    }
+  </script>
+</head>
+
+<body>
+  <center>
+    <h2 style="color:green">Try It Here</h2>
+  </center>
+  <div>
+    <div class="col-md-6">
+      <textarea id="txtarea" rows="22" cols="79">
+      <h1>Hello World!!!</h1>
+    </textarea>
+    </div>
+    <div class="col-md-6">
+      <iframe id="iframe_run" srcdoc="<h1>Hello World!!!</h1>" style="width:100%;height:70%;">
+      </iframe>
+    </div>
+  </div>
+  <div>
+    <center>
+      <button id="run" onclick="run()" class="btn btn-success">Run</button>
+      <button id="clr" onclick="clear_area()" class="btn btn-danger">Clear</button>
+      <button id="clframe" onclick="frameclear()" class="btn btn-warning">Clearframe</button>
+    </center>
+  </div>
+  </div>
+  <script src="bootstrap.min.js"> </script>
+</body>
+
+</html>

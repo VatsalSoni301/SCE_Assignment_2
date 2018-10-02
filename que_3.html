@@ -1,0 +1,225 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script>//444  2138
+    function SS() {
+      var res = document.getElementById("search").value;
+      var cont = document.getElementById("contentx").value;
+      //alert(cont);
+      if (res == "" && (cont == "character" || cont == "house" || cont == "randhousechar")) {
+        alert("Please Enter value to search");
+      }
+      else if (res != "" && (cont == "randomcharacter" || cont == "randomhouse")) {
+        alert("SearchBar should be empty");
+      }
+      else if (cont == "character") {
+        $.getJSON("https://anapioficeandfire.com/api/characters?name=" + res, function (data) {
+
+          if (data.length == 0) {
+            alert("No data found");
+          }
+          else {
+            document.getElementById("chartable").style.display = "block";
+            document.getElementById("housetable").style.display = "none";
+            document.getElementById('cname').innerHTML = data[0].name;
+            document.getElementById('cgender').innerHTML = data[0].gender;
+            document.getElementById('cculture').innerHTML = data[0].culture;
+            document.getElementById('ctitle').innerHTML = data[0].titles;
+            document.getElementById('cborn').innerHTML = data[0].born;
+            document.getElementById('cdied').innerHTML = data[0].died;
+            document.getElementById('cfather').innerHTML = data[0].father;
+            document.getElementById('cmother').innerHTML = data[0].mother;
+            document.getElementById('cspouse').innerHTML = data[0].spouse;
+            document.getElementById('caliases').innerHTML = data[0].aliases;
+            document.getElementById('cplayedBy').innerHTML = data[0].playedBy;
+          }
+        });
+      }
+      else if (cont == "house") {
+        $.getJSON("https://anapioficeandfire.com/api/houses?name=" + res, function (data) {
+
+          if (data.length == 0) {
+            alert("No data found");
+          }
+          else {
+            document.getElementById("housetable").style.display = "block";
+            document.getElementById("chartable").style.display = "none";
+            document.getElementById('hname').innerHTML = data[0].name;
+            document.getElementById('hregion').innerHTML = data[0].region;
+            document.getElementById('hcoat').innerHTML = data[0].coatOfArms;
+            document.getElementById('hlord').innerHTML = data[0].overlord;
+            document.getElementById('hwords').innerHTML = data[0].words;
+            document.getElementById('hfounder').innerHTML = data[0].founder;
+            document.getElementById('hfounded').innerHTML = data[0].founded;
+            document.getElementById('hdiedout').innerHTML = data[0].diedOut;
+            document.getElementById('hheir').innerHTML = data[0].heir;
+            document.getElementById('hseat').innerHTML = data[0].seats;
+          }
+        });
+      }
+      else if (cont == "randomcharacter") {
+        var num = Math.floor(Math.random() * 2137) + 1;
+        $.getJSON("https://anapioficeandfire.com/api/characters/" + num, function (data) {
+          document.getElementById("chartable").style.display = "block";
+          document.getElementById("housetable").style.display = "none";
+          document.getElementById('cname').innerHTML = data.name;
+          document.getElementById('cgender').innerHTML = data.gender;
+          document.getElementById('cculture').innerHTML = data.culture;
+          document.getElementById('ctitle').innerHTML = data.titles;
+          document.getElementById('cborn').innerHTML = data.born;
+          document.getElementById('cdied').innerHTML = data.died;
+          document.getElementById('cfather').innerHTML = data.father;
+          document.getElementById('cmother').innerHTML = data.mother;
+          document.getElementById('cspouse').innerHTML = data.spouse;
+          document.getElementById('caliases').innerHTML = data.aliases;
+          document.getElementById('cplayedBy').innerHTML = data.playedBy;
+        }).fail(function () {
+          SS();
+        });
+      }
+      else if (cont == "randomhouse") {
+        var num = Math.floor(Math.random() * 443) + 1;
+        $.getJSON("https://anapioficeandfire.com/api/houses/" + num, function (data) {
+
+          document.getElementById("housetable").style.display = "block";
+          document.getElementById("chartable").style.display = "none";
+          document.getElementById('hname').innerHTML = data.name;
+          document.getElementById('hregion').innerHTML = data.region;
+          document.getElementById('hcoat').innerHTML = data.coatOfArms;
+          document.getElementById('hwords').innerHTML = data.words;
+          document.getElementById('hlord').innerHTML = data.overlord;
+          document.getElementById('hfounder').innerHTML = data.founder;
+          document.getElementById('hfounded').innerHTML = data.founded;
+          document.getElementById('hdiedout').innerHTML = data.diedOut;
+          document.getElementById('hheir').innerHTML = data.heir;
+          document.getElementById('hseat').innerHTML = data.seats;
+        }).fail(function () {
+          SS();
+        });
+      }
+      else if (cont == "randhousechar") {
+        $.getJSON("https://anapioficeandfire.com/api/houses?name=" + res, function (data) {
+          if (data.length == 0) {
+            alert("No data found");
+          }
+          else {
+            var member = data[0].swornMembers;
+            var len = member.length;
+            var num = Math.floor(Math.random() * len) + 1;
+            var url = member[num];
+            $.getJSON(url, function (subdata) {
+              document.getElementById("chartable").style.display = "block";
+              document.getElementById("housetable").style.display = "none";
+              document.getElementById('cname').innerHTML = subdata.name;
+              document.getElementById('cgender').innerHTML = subdata.gender;
+              document.getElementById('cculture').innerHTML = subdata.culture;
+              document.getElementById('ctitle').innerHTML = subdata.titles;
+              document.getElementById('cborn').innerHTML = subdata.born;
+              document.getElementById('cdied').innerHTML = subdata.died;
+              document.getElementById('cfather').innerHTML = subdata.father;
+              document.getElementById('cmother').innerHTML = subdata.mother;
+              document.getElementById('cspouse').innerHTML = subdata.spouse;
+              document.getElementById('caliases').innerHTML = subdata.aliases;
+              document.getElementById('cplayedBy').innerHTML = subdata.playedBy;
+            }).fail(function () {
+              SS();
+            });
+          }
+        });
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div class="form-group">
+    <form>
+      <div class="jumbotron" style="height:40%">
+        <div>
+          <center>
+            <h2>Search of ICE and FIRE</h2>
+          </center><br />
+          <div class="col-md-4" style="margin-left:33%">
+            <input type="text" class="form-control" placeholder="Search.." id="search">
+            <select id="contentx" class="form-control">
+              <option value="character">Search By Character</option>
+              <option value="house">Search By House</option>
+              <option value="randomcharacter">Search By Random character</option>
+              <option value="randomhouse">Search By Random House</option>
+              <option value="randhousechar">Search By Random character from House</option>
+            </select>
+            <input type="button" value="search" onclick="SS()" class="btn btn-primary">
+          </div>
+        </div>
+      </div>
+    </form>
+    <center>
+      <table style="display:none;width:31%;" class="table" id="housetable">
+        <caption>House Data</caption>
+        <tr>
+          <th>Name:</th>
+          <td><b><span id="hname"></span></b></td>
+        </tr>
+        <tr>
+          <th>Region:</th>
+          <td><span id="hregion"></span></td>
+        </tr>
+        <tr>
+          <th>CoatOfArms:</th>
+          <td><span id="hcoat"></span></td>
+        </tr>
+        <tr>
+          <th>Diedout:</th>
+          <td><span id="hdiedout"></span></td>
+        </tr>
+        <tr>
+          <th>Seats:</th>
+          <td><span id="hseat"></span></td>
+        </tr>
+        <tr>
+          <th>Words:</th>
+          <td><span id="hwords"></span></td>
+        </tr>
+      </table>
+    </center>
+    <center>
+      <table border="0" style="display:none;width:31%;" class="table" id="chartable">
+        <caption>Character Data</caption>
+        <tr>
+          <th>Name:</th>
+          <td><b><span id="cname"></span></b></td>
+        </tr>
+        <tr>
+          <th>Gender:</th>
+          <td><span id="cgender"></span></td>
+        </tr>
+        <tr>
+          <th>Culture:</th>
+          <td><span id="cculture"></span></td>
+        </tr>
+        <tr>
+          <th>Titles:</th>
+          <td><span id="ctitle"></span></td>
+        </tr>
+        <tr>
+          <th>Born:</th>
+          <td><span id="cborn"></span></td>
+        </tr>
+        <tr>
+          <th>Died:</th>
+          <td><span id="cdied"></span></td>
+        </tr>
+        <tr>
+          <th>Aliases:</th>
+          <td><span id="caliases"></span></td>
+        </tr>
+      </table>
+    </center>
+  </div>
+  <script src="bootstrap.min.js"> </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<html>
+
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="bootstrap.min.css" rel='stylesheet' type='text/css' />
+  <script>
+    var gid = 1;
+    var last;
+    function once() {
+      $.getJSON("https://xkcd.com/info.0.json", function (data) {
+        last = data.num;
+      });
+    }
+    function first(x) {
+      if (x.id == "first") {
+        gid = 1;
+        $.getJSON("https://xkcd.com/" + gid + "/info.0.json", function (data) {
+          document.getElementById('hh').innerHTML = data.title;
+          document.getElementById('img').src = data.img;
+        });
+      }
+      else if (x.id == "next") {
+        gid = gid + 1;
+        if (gid > last) {
+          gid = last;
+        }
+        $.getJSON("https://xkcd.com/" + gid + "/info.0.json", function (data) {
+          document.getElementById('hh').innerHTML = data.title;
+          document.getElementById('img').src = data.img;
+        });
+      }
+      else if (x.id == "prev") {
+        gid = gid - 1;
+        if (gid < 1) {
+          gid = 1;
+        }
+        $.getJSON("https://xkcd.com/" + gid + "/info.0.json", function (data) {
+          document.getElementById('hh').innerHTML = data.title;
+          document.getElementById('img').src = data.img;
+        });
+      }
+      else if (x.id == "last") {
+        gid = last;
+        $.getJSON("https://xkcd.com/" + gid + "/info.0.json", function (data) {
+          document.getElementById('hh').innerHTML = data.title;
+          document.getElementById('img').src = data.img;
+        });
+      }
+      else if (x.id == "random") {
+        gid = Math.floor(Math.random() * 2053) + 1;
+        $.getJSON("https://xkcd.com/" + gid + "/info.0.json", function (data) {
+          document.getElementById('hh').innerHTML = data.title;
+          document.getElementById('img').src = data.img;
+        });
+      }
+    }
+  </script>
+</head>
+
+<body style="background-color:grey">
+  <script>once();</script>
+  <div class="form text-center">
+    <h1 id="hh">Barrel-Part 1</h1>
+    <input type="button" class="btn btn-primary" value="<< First" id="first" onclick="first(this)">
+    <input type="button" value="< Previous" class="btn btn-primary" id="prev" onclick="first(this)">
+    <input type="button" value="Random" class="btn btn-primary" id="random" onclick="first(this)">
+    <input type="button" value="Next >" class="btn btn-primary" id="next" onclick="first(this)">
+    <input type="button" value="Last >>" class="btn btn-primary" id="last" onclick="first(this)">
+    <br /><br />
+    <div>
+      <img id="img" src="https://imgs.xkcd.com/comics/barrel_cropped_(1).jpg">
+    </div>
+    <br />
+    <input type="button" value="<< First" class="btn btn-primary" id="first" onclick="first(this)">
+    <input type="button" value="< Previous" class="btn btn-primary" id="prev" onclick="first(this)">
+    <input type="button" value="Random" class="btn btn-primary" id="random" onclick="first(this)">
+    <input type="button" value="Next >" class="btn btn-primary" id="next" onclick="first(this)">
+    <input type="button" value="Last >>" class="btn btn-primary" id="last" onclick="first(this)">
+  </div>
+  <script src="bootstrap.min.js"> </script>
+</body>
+
+</html>
