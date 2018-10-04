@@ -1,5 +1,273 @@
 <html>
+
+<head>
+  <title>Clock</title>
+  <style>
+.clk {
+  height: 450px;
+  width: 450px;
+  background-color:grey;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius:100%;
+}
+.twl {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  background: black;
+  left: 0;
+  top: 0;
+  right: 0;
+  margin: auto;
+}
+.ele {
+  position: absolute;
+  top: -350;
+  bottom: 0;
+  left: 90;
+  margin: auto;
+  width: 20px;
+  height: 5px;
+  background: black;
+  -webkit-transform:
+            rotate(60deg);
+  margin: auto;
+}
+.ten {
+  position: absolute;
+  top: -200;
+  bottom: 0;
+  left: 25;
+  margin: auto;
+  width: 20px;
+  height: 5px;
+  background: black;
+  -webkit-transform:
+            rotate(30deg);
+  margin: auto;
+}
+.nine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  width: 20px;
+  height: 5px;
+  background: black;
+}
+.egt {
+  position: absolute;
+  top: 200;
+  bottom: 0;
+  left: 25;
+  margin: auto;
+  width: 20px;
+  height: 5px;
+  background: black;
+  -webkit-transform:
+            rotate(330deg);
+  margin: auto;
+}
+.seven {
+  position: absolute;
+  top: 350;
+  bottom: 0;
+  left: 90;
+  margin: auto;
+  width: 20px;
+  height: 5px;
+  background: black;
+  -webkit-transform:
+            rotate(300deg);
+  margin: auto;
+}
+.six {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 5px;
+  height: 20px;
+  background: black;
+  margin: auto;
+}
+.fifth {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: black;
+  top: 350;
+  bottom: 0;
+  right: 90;
+  -webkit-transform:
+            rotate(60deg);
+  margin: auto;
+}
+.four {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: black;
+  top: 200;
+  bottom: 0;
+  right: 25;
+  -webkit-transform:
+            rotate(30deg);
+  margin: auto;
+}
+.third {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: black;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+.two {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: black;
+  top: -350;
+  bottom: 0;
+  right: 90;
+  -webkit-transform:
+            rotate(300deg);
+  margin: auto;
+}
+.one {
+  position: absolute;
+  width: 20px;
+  height: 5px;
+  background: black;
+  top: -200;
+  bottom: 0;
+  right: 25;
+  -webkit-transform:
+            rotate(330deg);
+  margin: auto;
+}
+#hr {
+  -webkit-transform-origin: bottom;
+  position: absolute;
+  height: 90px;
+  width: 5px;
+  left: 0;
+  right: 0;
+  bottom: 90px;
+  top: 0px;
+  margin: auto;
+  background:black;
+}
+#min {
+  -webkit-transform-origin: bottom;
+  position: absolute;
+  height: 130px;
+  width: 3px;
+  left: 0;
+  right: 0;
+  bottom: 130px;
+  top: 0px;
+  margin: auto;
+  background:black;
+}
+#sec {
+  -webkit-transform-origin: bottom;
+  position: absolute;
+  height: 180px;
+  width: 2px;
+  left: 0; 
+   margin: auto;
+  background: black;
+  right: 0;
+  bottom: 180px;
+  top: 0px;
+}
+      </style>
+  <script>
+    function Arrow() 
+    {
+      with (new Date()) 
+      {
+        hr = 30 * ((getHours() % 12) + getMinutes() / 60);
+        
+        min = 6 * getMinutes();
+        
+        sec = 6 * getSeconds();
+
+        document.getElementById("sec").style.cssText ="-webkit-transform:rotate(" + sec + "deg);";
+        document.getElementById("min").style.cssText ="-webkit-transform:rotate(" + min + "deg);";
+        document.getElementById("hr").style.cssText ="-webkit-transform:rotate(" + hr + "deg);";
+
+        setTimeout(Arrow, 1000);
+      }
+    }
+
+    window.onload = Arrow;
+  </script>
+</head>
+
 <body>
-<h1>Hello</h1>
+  <h1 style="text-align: center">Clock</h1>
+  <div class="clk">
+    <div id="hr">
+
+    </div>
+    <div id="min">
+
+    </div>
+    <div id="sec">
+
+    </div>
+    <div class="one">
+      
+      </div>
+    <div class="two">
+      
+      </div>
+    <div class="third">
+
+    </div>
+    <div class="four">
+      
+      </div>
+      <div class="fifth">
+      
+        </div>
+    <div class="six">
+
+    </div>
+    <div class="seven">
+      
+      </div>
+    <div class="egt">
+      
+      </div>
+    <div class="nine">
+
+    </div>
+    <div class="ten">
+      
+      </div>
+      <div class="ele">
+      
+        </div>
+    <div class="twl">
+      
+    </div>
+    <div class="clk" style="background-color:black;width:10px;height:10px;">
+
+    </div>
+  </div>
+
 </body>
+
 </html>
